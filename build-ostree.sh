@@ -79,11 +79,11 @@ chmod +x "$ROOTFS_DIR"/usr/sbin/policy-rc.d
 
 # Mount common kernel filesystems. dracut expects /dev to be mounted.
 echo "Mounting filesystems in $ROOTFS_DIR"
-DEVICES_MOUNTED=true
-for dir in proc sys dev dev/pts; do
-    mkdir -p "$ROOTFS_DIR/$dir"
-    mount --bind "/$dir" "$ROOTFS_DIR/$dir"
-done
+# DEVICES_MOUNTED=true
+# for dir in proc sys dev dev/pts; do
+#     mkdir -p "$ROOTFS_DIR/$dir"
+#     mount --bind "/$dir" "$ROOTFS_DIR/$dir"
+# done
 
 ################################################
 ### END OF DEB-OSTREE-BUILDER --- PHASE 1
