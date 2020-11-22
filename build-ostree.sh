@@ -141,7 +141,7 @@ apt-get --yes upgrade
 apt-get --yes --option Acquire::Retries=5 --option Acquire::http::Timeout=100 install $PACKAGES
 
 # use aptitude because it keeps going if one of the packages doesn't exist.
-aptitude remove -y $BLACKLISTED_PACKAGES
+aptitude remove -y -f $BLACKLISTED_PACKAGES
 
 rm -f /third-stage
 EOF
@@ -174,8 +174,6 @@ echo "Preparing system for OSTree"
 REPO=$BASE_DIR/ostree
 
 mkdir -p "$REPO"
-cd $REPO
-ostree init
-cd $BASE_DIR
+ostree init --repo="$REPO"
 
-./scripts/deb-ostree-builder.sh $BASECODENAME $REPO -a $ARCH -d $ROOTFS_DIR
+./scripts/deb-ostree-builder.sh $BASECODENAME "$REPO" -a $ARCH -d "$ROOTFS_DIR"
