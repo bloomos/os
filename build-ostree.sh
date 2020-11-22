@@ -25,7 +25,8 @@ apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
         debootstrap git binfmt-support parted kpartx rsync dosfstools xz-utils \
         ostree
 
-export PACKAGES="linux-image-generic grub-pc elementary-minimal elementary-desktop elementary-standard elementary-live"
+# Use LXDE just to see if this works, then switch back hopefully.
+export PACKAGES="linux-image-generic grub-pc lxde fonts-noto fonts-croscore elementary-minimal elementary-standard gparted"
 
 mkdir -p $BASE_DIR
 cd $BASE_DIR
