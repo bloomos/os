@@ -91,7 +91,7 @@ done
 
 echo "Building system with debootstrap in $ROOTFS_DIR"
 
-debootstrap $BASECODENAME $ROOTFS_DIR "$MIRROR_URL" --keyring ubuntu-keyring 
+debootstrap $BASECODENAME $ROOTFS_DIR "$MIRROR_URL"
 
 # Copy in the elementary PPAs/keys/apt config
 for f in ${ROOT_DIR}/etc/config/archives/*.list; do cp -- "$f" "$ROOTFS_DIR/etc/apt/sources.list.d/$(basename -- $f)"; done
