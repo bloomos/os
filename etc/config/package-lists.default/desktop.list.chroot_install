@@ -73,7 +73,7 @@ wget
 # elementary-standard recommends
 apparmor
 bash-completion
-btrfs-tools
+# btrfs-tools
 command-not-found
 cryptsetup
 friendly-recovery
@@ -91,7 +91,7 @@ plymouth
 tcpdump
 telnet
 ufw
-ureadahead
+# ureadahead
 uuid-runtime
 
 @XORG_HWE
