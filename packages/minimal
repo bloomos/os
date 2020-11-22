@@ -2,6 +2,7 @@
 adduser
 apt
 apt-utils
+aptitude
 bzip2
 console-setup
 debconf

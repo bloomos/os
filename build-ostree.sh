@@ -138,9 +138,10 @@ cat << EOF > $ROOTFS_DIR/third-stage
 #!/bin/bash
 apt-get update
 apt-get --yes upgrade
-apt-get --yes install $PACKAGES
+apt-get --yes --option Acquire::Retries=5 --option Acquire::http::Timeout=100 install $PACKAGES
 
-apt-get autoremove --purge -f -q -y $BLACKLISTED_PACKAGES
+# use aptitude because it keeps going if one of the packages doesn't exist.
+aptitude remove -y $BLACKLISTED_PACKAGES
 
 rm -f /third-stage
 EOF
