@@ -73,7 +73,7 @@ wget
 # elementary-standard recommends
 apparmor
 bash-completion
-btrfs-tools
+# btrfs-tools
 command-not-found
 cryptsetup
 friendly-recovery
