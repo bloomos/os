@@ -25,38 +25,24 @@ apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
         debootstrap git binfmt-support parted kpartx rsync dosfstools xz-utils \
         ostree
 
-# Use LXDE just to see if this works, then switch back hopefully.
-PACKAGES="linux-image-generic grub-pc elementary-minimal elementary-standard lxde flatpak gparted"
+PACKAGES=""
+BLACKLISTED_PACKAGES=""
+
+# Build packages
+for package in $(cat ./packages/* | grep -v '#'); do
+  PACKAGES+=" $package"
+done
+
+# Build blacklisted packages
+for package in $(cat ./blacklists/* | grep -v '#'); do
+  BLACKLISTED_PACKAGES+=" $package"
+done
 
 mkdir -p $BASE_DIR
 cd $BASE_DIR
 
 ROOTFS_DIR=$BASE_DIR/rootfs-$ARCH
 mkdir -p $ROOTFS_DIR
-
-################################################
-### START OF DEB-OSTREE-BUILDER --- PHASE 1
-################################################
-
-# Mount cleanup handler
-DEVICES_MOUNTED=false
-cleanup_mounts()
-{
-    if $DEVICES_MOUNTED; then
-        echo "Unmounting filesystems in $BUILDDIR"
-        umount "$ROOTFS_DIR"/dev/pts
-        umount "$ROOTFS_DIR"/dev/
-        umount "$ROOTFS_DIR"/proc
-        DEVICES_MOUNTED=false
-    fi
-}
-
-# Exit handler
-cleanup()
-{
-    cleanup_mounts || true
-}
-trap cleanup EXIT
 
 # Ensure that dracut makes generic initramfs instead of looking just
 # at the host configuration. This is also in the dracut-config-generic
@@ -77,10 +63,6 @@ cat > "$ROOTFS_DIR"/usr/sbin/policy-rc.d <<EOF
 exit 101
 EOF
 chmod +x "$ROOTFS_DIR"/usr/sbin/policy-rc.d
-
-################################################
-### END OF DEB-OSTREE-BUILDER --- PHASE 1
-################################################
 
 echo "Building system with debootstrap in $ROOTFS_DIR"
 
@@ -120,6 +102,30 @@ proc /proc proc nodev,noexec,nosuid 0  0
 LABEL=writable    /     ext4    defaults    0 0
 EOF
 
+# Mount cleanup handler.
+#
+# This is for dracut, where it is set to true below when
+# we go to install packages.
+DEVICES_MOUNTED=false
+cleanup_mounts()
+{
+    if $DEVICES_MOUNTED; then
+        echo "Unmounting filesystems in $BUILDDIR"
+        umount "$ROOTFS_DIR"/dev/pts
+        umount "$ROOTFS_DIR"/dev/
+        umount "$ROOTFS_DIR"/proc
+        DEVICES_MOUNTED=false
+    fi
+}
+
+# Exit handler
+cleanup()
+{
+    echo "Error! Clean up packages"
+    cleanup_mounts || true
+}
+trap cleanup EXIT
+
 # Mount common kernel filesystems. dracut expects /dev to be mounted.
 echo "Mounting filesystems in $ROOTFS_DIR"
 DEVICES_MOUNTED=true
@@ -133,6 +139,8 @@ cat << EOF > $ROOTFS_DIR/third-stage
 apt-get update
 apt-get --yes upgrade
 apt-get --yes install $PACKAGES
+
+apt-get autoremove --purge -f -q -y $BLACKLISTED_PACKAGES
 
 rm -f /third-stage
 EOF
