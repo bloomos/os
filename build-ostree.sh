@@ -26,7 +26,7 @@ apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
         ostree
 
 # Use LXDE just to see if this works, then switch back hopefully.
-export PACKAGES="linux-image-generic grub-pc lxde fonts-noto fonts-croscore elementary-minimal elementary-standard gparted"
+PACKAGES="linux-image-generic grub-pc elementary-minimal elementary-standard lxde flatpak gparted"
 
 mkdir -p $BASE_DIR
 cd $BASE_DIR
@@ -164,6 +164,7 @@ echo "Preparing system for OSTree"
 
 REPO=$BASE_DIR/ostree
 
+mkdir -p "$REPO"
 cd $REPO
 ostree init
 cd $BASE_DIR
