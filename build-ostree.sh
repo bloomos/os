@@ -25,7 +25,7 @@ apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
         debootstrap git binfmt-support parted kpartx rsync dosfstools xz-utils \
         ostree
 
-export PACKAGES="linux-image-generic grub-pc elementary-minimal elementary-desktop elementary-standard elementary-live flatpak"
+export PACKAGES="linux-image-generic grub-pc elementary-minimal elementary-desktop elementary-standard elementary-live"
 
 mkdir -p $BASE_DIR
 cd $BASE_DIR
