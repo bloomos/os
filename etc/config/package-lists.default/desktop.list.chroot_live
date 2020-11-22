@@ -2,13 +2,14 @@
 casper
 cifs-utils
 discover
+distinst
 dmraid
-fwupdate-signed
+expect
+fwupd-signed
 gparted
+io.elementary.installer
 mokutil
 os-prober
 reiserfsprogs
-ubiquity-frontend-gtk
-ubiquity-ubuntu-artwork
 wamerican
 xfsprogs

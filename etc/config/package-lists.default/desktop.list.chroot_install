@@ -9,9 +9,9 @@ bzip2
 console-setup
 debconf
 debconf-i18n
+e2fsprogs
 eject
 init
-initramfs-tools
 iproute2
 iputils-ping
 isc-dhcp-client
@@ -24,7 +24,7 @@ mawk
 mount
 netbase
 netcat-openbsd
-nplan
+netplan.io
 passwd
 procps
 python3
@@ -73,7 +73,6 @@ wget
 # elementary-standard recommends
 apparmor
 bash-completion
-# btrfs-tools
 command-not-found
 cryptsetup
 friendly-recovery
@@ -91,7 +90,6 @@ plymouth
 tcpdump
 telnet
 ufw
-# ureadahead
 uuid-runtime
 
 @XORG_HWE
