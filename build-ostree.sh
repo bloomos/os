@@ -43,9 +43,9 @@ cleanup_mounts()
 {
     if $DEVICES_MOUNTED; then
         echo "Unmounting filesystems in $BUILDDIR"
-        for dir in dev/pts dev sys proc; do
-            umount "$BUILDDIR/$dir"
-        done
+        umount "$ROOTFS_DIR"/dev/pts
+        umount "$ROOTFS_DIR"/dev/
+        umount "$ROOTFS_DIR"/proc
         DEVICES_MOUNTED=false
     fi
 }
@@ -77,14 +77,6 @@ exit 101
 EOF
 chmod +x "$ROOTFS_DIR"/usr/sbin/policy-rc.d
 
-# Mount common kernel filesystems. dracut expects /dev to be mounted.
-echo "Mounting filesystems in $ROOTFS_DIR"
-# DEVICES_MOUNTED=true
-# for dir in proc sys dev dev/pts; do
-#     mkdir -p "$ROOTFS_DIR/$dir"
-#     mount --bind "/$dir" "$ROOTFS_DIR/$dir"
-# done
-
 ################################################
 ### END OF DEB-OSTREE-BUILDER --- PHASE 1
 ################################################
@@ -107,7 +99,7 @@ sed -i "s/@BASECODENAME/$BASECODENAME/" $ROOTFS_DIR/etc/apt/preferences.d/*.pref
 
 echo "elementary" > $ROOTFS_DIR/etc/hostname
 
-cat << EOF > elementary-${ARCH}/etc/hosts
+cat << EOF > $ROOTFS_DIR/etc/hosts
 127.0.0.1       elementary    localhost
 ::1             localhost ip6-localhost ip6-loopback
 fe00::0         ip6-localnet
@@ -121,6 +113,15 @@ export DEBIAN_FRONTEND=noninteractive
 # Config to stop flash-kernel trying to detect the hardware in chroot
 export FK_MACHINE=none
 
+cat << EOF > $ROOTFS_DIR/etc/fstab
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+proc /proc proc nodev,noexec,nosuid 0  0
+LABEL=writable    /     ext4    defaults    0 0
+EOF
+
+# Mount common kernel filesystems. dracut expects /dev to be mounted.
+echo "Mounting filesystems in $ROOTFS_DIR"
+DEVICES_MOUNTED=true
 mount -t proc proc $ROOTFS_DIR/proc
 mount -o bind /dev/ $ROOTFS_DIR/dev/
 mount -o bind /dev/pts $ROOTFS_DIR/dev/pts
