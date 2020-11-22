@@ -25,7 +25,8 @@ I am doing this only as a hobby, so I want to reuse from other free software pro
 
 To-Do List:
 
-* [ ] Integrate deb-ostree-builder scripts, get it to run w/ `debootstrap` without crashing.
+* [ ] Integrate deb-ostree-builder scripts, get an OSTree created w/ `debootstrap` without crashing.
+* [ ] Create a deployment of OSTree in a directory.
 * [ ] Work with `archlinux/archiso` to get a live ISO created from OSTree.
 * [ ] Be able to install an OSTree system.
 

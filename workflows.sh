@@ -4,4 +4,4 @@ set -e
 
 CONFIG_FILE="$1"
 
-./build.sh "$CONFIG_FILE"
+./build-ostree.sh "$CONFIG_FILE"

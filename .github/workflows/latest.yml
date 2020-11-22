@@ -18,8 +18,8 @@ jobs:
       - name: Build ISO
         run: |
           ./workflows.sh etc/terraform-daily-6.0-azure.conf
-      - name: Archive ISO
-        uses: actions/upload-artifact@v2
-        with:
-          name: live-image
-          path: 'builds/live-image.iso'
+      # - name: Archive ISO
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: live-image
+      #     path: 'builds/live-image.iso'
