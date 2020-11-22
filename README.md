@@ -11,11 +11,23 @@
   <br>
 </div>
 
-<p align="center">
-  <img src="https://github.com/elementary/os/workflows/stable/badge.svg" alt="Stable">
-  <img src="https://github.com/elementary/os/workflows/daily-5.1/badge.svg" alt="Daily 5.1">
-  <img src="https://github.com/elementary/os/workflows/daily-6.0/badge.svg" alt="Daily 6.0">
-</p>
+---
+
+Experiments with Linux-based distributions. Right now, the goal is to get an elementary OS ish system running from OSTree, which has the following benefits:
+
+* Read-only system.
+* A/B updates like Android.
+
+I am doing this only as a hobby, so I want to reuse from other free software projects when possible. With that in mind...
+
+- [dbnicholson/deb-ostree-builder](https://github.com/dbnicholson/deb-ostree-builder/tree/simple-builder) - this looks interesting, want to inline the scripts and change to use `debootstrap` (like Elementary for Pi does?).
+- [archlinux/archiso](https://gitlab.archlinux.org/archlinux/archiso/-/blob/master/archiso/mkarchiso) - the Bash scripts here look great, and would be useful for making a live ISO from SquashFS.
+
+To-Do List:
+
+* [ ] Integrate deb-ostree-builder scripts, get it to run w/ `debootstrap` without crashing.
+* [ ] Work with `archlinux/archiso` to get a live ISO created from OSTree.
+* [ ] Be able to install an OSTree system.
 
 ---
 
