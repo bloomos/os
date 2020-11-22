@@ -81,8 +81,8 @@ while true; do
     esac
 done
 
-if [ $# -lt 3 ]; then
-    echo "Must specify PACKAGES, BASECODENAME and REPO" >&2
+if [ $# -lt 2 ]; then
+    echo "Must specify BASECODENAME and REPO" >&2
     exit 1
 fi
 
