@@ -166,4 +166,4 @@ cd $REPO
 ostree init
 cd $BASE_DIR
 
-sh ./scripts/deb-ostree-builder.sh $BASECODENAME $REPO -a $ARCH -d $ROOTFS_DIR
+./scripts/deb-ostree-builder.sh $BASECODENAME $REPO -a $ARCH -d $ROOTFS_DIR
