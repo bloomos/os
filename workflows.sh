@@ -15,7 +15,7 @@ fi
 apt-get update
 apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
         debootstrap git binfmt-support parted kpartx rsync dosfstools xz-utils \
-        ostree
+        python3.8 python3-pip ostree
 
 # Install the AWS CLI
 export AWS_REGION="us-east-1"
@@ -31,7 +31,10 @@ python -m pip install --user awscli
 REPO=`pwd`/build/ostree
 ARGS="--no-progress --acl public-read --follow-symlinks --quiet"
 
+####################################################
 # First pass of /objects and /deltas. NO DELETE.
+####################################################
+
 if [[ -f "$REPO/objects" ]]; then
     aws s3 sync "$REPO/objects" "s3://$AWS_S3_BUCKET/objects"
 fi
@@ -39,7 +42,10 @@ if [[ -f "$REPO/deltas" ]]; then
     aws s3 sync "$REPO/deltas" "s3://$AWS_S3_BUCKET/deltas"
 fi
 
+####################################################
 # Pass of /refs and /summary
+####################################################
+
 if [[ -f "$REPO/refs" ]]; then
     aws s3 sync "$REPO/refs" "s3://$AWS_S3_BUCKET/refs" --delete $ARGS
 fi
@@ -47,7 +53,10 @@ if [[ -f "$REPO/summary" ]]; then
     aws s3 sync "$REPO/summary" "s3://$AWS_S3_BUCKET/summary" --delete $ARGS
 fi
 
+####################################################
 # Second pass of /objects and /deltas.
+####################################################
+
 if [[ -f "$REPO/objects" ]]; then
     aws s3 sync "$REPO/objects" "s3://$AWS_S3_BUCKET/objects" --delete $ARGS
 fi
