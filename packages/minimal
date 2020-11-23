@@ -37,3 +37,6 @@ whiptail
 
 # elementary-minimal recommends
 rsyslog
+
+ostree-boot
+usrmerge
