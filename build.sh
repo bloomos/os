@@ -166,9 +166,12 @@ REPO=$BASE_DIR/ostree
 BRANCH="os/bloom/$ARCH/$BASECODENAME"
 
 mkdir -p "$REPO"
-ostree --repo="$REPO" init --mode="archive"
+ostree --repo="$REPO" init --mode="archive-z2"
+
 echo "Pulling from remote server"
-ostree --repo="$REPO" pull "$REMOTE_OSTREE_REPO" "$BRANCH"
+ostree --repo="$REPO" remote add "$NAME" "$REMOTE_OSTREE_REPO" "$BRANCH"
+ostree --repo="$REPO" pull --mirror "$NAME" "$BRANCH" || :
+ostree --repo="$REPO" remote delete --if-exists "$NAME"
 
 echo "Commiting our new build"
 /bin/bash "$ROOT_DIR"/scripts/deb-ostree-builder.sh $BASECODENAME "$REPO" -a $ARCH -d "$ROOTFS_DIR"
