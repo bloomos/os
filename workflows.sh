@@ -18,8 +18,14 @@ apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
         python3.8 python3-pip ostree
 
 # Install the AWS CLI
+# https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
 export AWS_REGION="us-east-1"
-python3 -m pip install --user awscli
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+./aws/install
+
+# Sanity check for the build.
+aws help
 
 ./build.sh "$CONFIG_FILE"
 
