@@ -3,7 +3,7 @@
 set -e
 
 # Params to workflows.sh.
-CONFIG_FILE="$1"
+ENV_FILE="$1"
 
 # check for root permissions
 if [[ "$(id -u)" != 0 ]]; then
@@ -28,7 +28,7 @@ unzip awscliv2.zip
 # Sanity check for the build.
 aws help
 
-./build.sh "$CONFIG_FILE"
+./build.sh "$ENV_FILE"
 
 # We rsync in reverse data dependence order - the summary and refs
 # point to objects + deltas.  Our first pass over the objects doesn't

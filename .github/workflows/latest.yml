@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v1
       - name: Build OSTree commit & sync to S3
         run: |
-          ./workflows.sh etc/terraform-daily-6.0-azure.conf
+          ./workflows.sh ./.env
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}

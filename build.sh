@@ -63,9 +63,9 @@ echo "Building system with debootstrap in $ROOTFS_DIR"
 debootstrap $BASECODENAME $ROOTFS_DIR "$MIRROR_URL"
 
 # Copy in the elementary PPAs/keys/apt config
-for f in ${ROOT_DIR}/etc/config/archives/*.list; do cp -- "$f" "$ROOTFS_DIR/etc/apt/sources.list.d/$(basename -- $f)"; done
-for f in ${ROOT_DIR}/etc/config/archives/*.key; do cp -- "$f" "$ROOTFS_DIR/etc/apt/trusted.gpg.d/$(basename -- $f).asc"; done
-for f in ${ROOT_DIR}/etc/config/archives/*.pref; do cp -- "$f" "$ROOTFS_DIR/etc/apt/preferences.d/$(basename -- $f)"; done
+for f in ${ROOT_DIR}/archives/*.list; do cp -- "$f" "$ROOTFS_DIR/etc/apt/sources.list.d/$(basename -- $f)"; done
+for f in ${ROOT_DIR}/archives/*.key; do cp -- "$f" "$ROOTFS_DIR/etc/apt/trusted.gpg.d/$(basename -- $f).asc"; done
+for f in ${ROOT_DIR}/archives/*.pref; do cp -- "$f" "$ROOTFS_DIR/etc/apt/preferences.d/$(basename -- $f)"; done
 
 # Set BASECODENAME/CHANNEL in added repos
 sed -i "s/@CHANNEL/$CHANNEL/" $ROOTFS_DIR/etc/apt/sources.list.d/*.list*
@@ -143,7 +143,7 @@ chmod +x $ROOTFS_DIR/third-stage
 LANG=C chroot $ROOTFS_DIR /third-stage
 
 # Copy in any file overrides
-cp -r ${ROOT_DIR}/etc/config/includes.chroot/* $ROOTFS_DIR/
+cp -r ${ROOT_DIR}/includes.chroot/* $ROOTFS_DIR/
 
 mkdir $ROOTFS_DIR/hooks
 cp ${ROOT_DIR}/scripts/chroot/*.chroot $ROOTFS_DIR/hooks
