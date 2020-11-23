@@ -89,29 +89,12 @@ fi
 BASECODENAME=$1
 REPO=$2
 
-# Cleanup cruft
-rm -rf \
-   "$BUILDDIR"/boot/*.bak \
-   "$BUILDDIR"/etc/apt/sources.list~ \
-   "$BUILDDIR"/etc/apt/trusted.gpg~ \
-   "$BUILDDIR"/etc/{passwd,group,shadow,gshadow}- \
-   "$BUILDDIR"/var/cache/debconf/*-old \
-   "$BUILDDIR"/var/lib/dpkg/*-old \
-   "$BUILDDIR"/boot/{initrd.img,vmlinuz} \
-   "$BUILDDIR"/{initrd.img,vmlinuz}{,.old}
-
 # Remove dbus machine ID cache (makes each system unique)
 rm -f "$BUILDDIR"/var/lib/dbus/machine-id "$BUILDDIR"/etc/machine-id
 
 # Remove resolv.conf copied from the host by debootstrap. The settings
 # are only valid on the target host and will be populated at runtime.
 rm -f "$BUILDDIR"/etc/resolv.conf
-
-# Remove temporary files
-rm -rf "$BUILDDIR"/var/cache/man/*
-rm -rf "$BUILDDIR"/tmp "$BUILDDIR"/var/tmp
-mkdir -p "$BUILDDIR"/tmp "$BUILDDIR"/var/tmp
-chmod 1777 "$BUILDDIR"/tmp "$BUILDDIR"/var/tmp
 
 # OSTree uses a single checksum of the combined kernel and initramfs
 # to manage boot. Determine the checksum and rename the files the way

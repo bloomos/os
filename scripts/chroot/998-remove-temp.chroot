@@ -1,0 +1,7 @@
+#!/bin/sh
+# Remove & replace temporary files.
+
+rm -rf /var/cache/man/*
+rm -rf /tmp /var/tmp
+mkdir -p /tmp /var/tmp
+chmod 1777 /tmp /var/tmp
