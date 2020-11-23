@@ -170,3 +170,5 @@ mkdir -p "$REPO"
 ostree init --repo="$REPO" --mode="archive"
 
 /bin/bash "$ROOT_DIR"/scripts/deb-ostree-builder.sh $BASECODENAME "$REPO" -a $ARCH -d "$ROOTFS_DIR"
+
+echo "Complete!"
