@@ -121,7 +121,6 @@ cleanup_mounts()
 # Exit handler
 cleanup()
 {
-    echo "Error! Clean up packages"
     cleanup_mounts || true
 }
 trap cleanup EXIT

@@ -15,11 +15,14 @@ jobs:
     steps:
       - name: Clone build scripts
         uses: actions/checkout@v1
-      - name: Build ISO
+      - name: Build OSTree commit
         run: |
           ./workflows.sh etc/terraform-daily-6.0-azure.conf
-      # - name: Archive ISO
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: live-image
-      #     path: 'builds/live-image.iso'
+      - name: Sync OSTree with S3
+        uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: 'build/ostree'
+          destination_dir: ''
