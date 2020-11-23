@@ -146,7 +146,7 @@ LANG=C chroot $ROOTFS_DIR /third-stage
 cp -r ${ROOT_DIR}/etc/config/includes.chroot/* $ROOTFS_DIR/
 
 mkdir $ROOTFS_DIR/hooks
-cp ${ROOT_DIR}/etc/config/hooks/live/*.chroot $ROOTFS_DIR/hooks
+cp ${ROOT_DIR}/scripts/chroot/*.chroot $ROOTFS_DIR/hooks
 
 for f in $ROOTFS_DIR/hooks/*
 do
