@@ -1,2 +1,2 @@
 linux-image-generic
-grub-pc
+grub-efi-amd64-signed

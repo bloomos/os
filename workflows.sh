@@ -16,7 +16,7 @@ apt-get update
 apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
         debootstrap git binfmt-support parted kpartx rsync dosfstools xz-utils \
         python3.8 python3-pip unzip curl less groff \
-        ostree
+        ostree xorriso squashfs-tools
 
 # Install the AWS CLI
 # https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
@@ -39,8 +39,7 @@ echo "Uploading to AWS S3"
 
 REPO=`pwd`/build/ostree
 
-
-aws s3 sync "$REPO" "s3://$AWS_S3_BUCKET" --delete --no-progress --acl public-read --follow-symlinks
+aws s3 sync "$REPO" "s3://$AWS_S3_BUCKET" --delete --no-progress --acl public-read --follow-symlinks --quiet
 
 # FIXME: Get proper order working below.
 # ARGS="--no-progress --acl public-read --follow-symlinks --quiet"

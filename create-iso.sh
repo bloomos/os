@@ -50,3 +50,12 @@ KARGS=(--karg=root=UUID=$(uuidgen) --karg=rw --karg=splash \
 ostree admin --sysroot="$SYSROOT" deploy --os="$NAME" "${KARGS[@]}" "$NAME:$BRANCH"
 
 # Now $SYSROOT is ready to be written to some disk
+
+#############################################################
+# Make SquashFS filesystem and bootable ISO.
+#############################################################
+
+SQUASHFS=$BASE_DIR/image.sfs
+
+mksquashfs "$SYSROOT" "$SQUASHFS" -noappend -comp xz
+
