@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -e
+#!/bin/bash -e
 
 # check for root permissions
 if [[ "$(id -u)" != 0 ]]; then
@@ -128,7 +126,7 @@ mount -o bind /dev/pts $ROOTFS_DIR/dev/pts
 
 # Make a third stage that installs all of the packages
 cat << EOF > $ROOTFS_DIR/third-stage
-#!/bin/bash
+#!/bin/bash -e
 apt-get update
 apt-get --yes upgrade
 apt-get --yes --option Acquire::Retries=5 --option Acquire::http::Timeout=100 install $PACKAGES
