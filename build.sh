@@ -163,10 +163,14 @@ rm -f "$ROOTFS_DIR"/usr/sbin/policy-rc.d
 echo "Preparing system for OSTree"
 
 REPO=$BASE_DIR/ostree
+BRANCH="os/bloom/$ARCH/$BASECODENAME"
 
 mkdir -p "$REPO"
-ostree init --repo="$REPO" --mode="archive"
+ostree --repo="$REPO" init --mode="archive"
+echo "Pulling from remote server"
+ostree --repo="$REPO" pull "$REMOTE_OSTREE_REPO" "$BRANCH"
 
+echo "Commiting our new build"
 /bin/bash "$ROOT_DIR"/scripts/deb-ostree-builder.sh $BASECODENAME "$REPO" -a $ARCH -d "$ROOTFS_DIR"
 
 echo "Complete!"
