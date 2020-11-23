@@ -15,15 +15,10 @@ jobs:
     steps:
       - name: Clone build scripts
         uses: actions/checkout@v1
-      - name: Build OSTree commit
+      - name: Build OSTree commit & sync to S3
         run: |
           ./workflows.sh etc/terraform-daily-6.0-azure.conf
-      - name: Sync OSTree with S3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --follow-symlinks --delete
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          SOURCE_DIR: 'build/ostree'
