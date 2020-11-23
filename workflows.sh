@@ -19,7 +19,7 @@ apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
 
 # Install the AWS CLI
 export AWS_REGION="us-east-1"
-python -m pip install --user awscli
+python3 -m pip install --user awscli
 
 ./build.sh "$CONFIG_FILE"
 
