@@ -15,7 +15,7 @@ fi
 apt-get update
 apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
         debootstrap git binfmt-support parted kpartx rsync dosfstools xz-utils \
-        python3.8 python3-pip ostree
+        python3.8 python3-pip curl ostree
 
 # Install the AWS CLI
 # https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
