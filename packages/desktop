@@ -1,4 +1,13 @@
 # Use LXDE just to see if this works, then switch back hopefully.
 lxde
+
+# User-space applications.
 flatpak
+
+# Zeroconf.
+avahi-daemon
+avahi-discover
+libnss-mdns
+
+# Live tools.
 gparted
