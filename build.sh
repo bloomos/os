@@ -131,8 +131,12 @@ apt-get update
 apt-get --yes upgrade
 apt-get --yes --option Acquire::Retries=5 --option Acquire::http::Timeout=100 install $PACKAGES
 
+apt-get --yes install aptitude
+
 # use aptitude because it keeps going if one of the packages doesn't exist.
 aptitude remove -y -f $BLACKLISTED_PACKAGES
+
+apt-get --yes remove aptitude
 
 rm -f /third-stage
 EOF

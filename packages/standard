@@ -5,6 +5,7 @@ cron
 dmidecode
 dnsutils
 dosfstools
+f2fs-tools
 ed
 file
 ftp
@@ -22,7 +23,6 @@ mime-support
 parted
 pciutils
 psmisc
-rsync
 strace
 time
 usbutils
@@ -30,22 +30,23 @@ wget
 
 # elementary-standard recommends
 apparmor
-bash-completion
-command-not-found
 cryptsetup
-friendly-recovery
+# Probably not needed because OSTree adds an option for the
+# previously booted tree...
+# friendly-recovery
 iputils-tracepath
 irqbalance
-jfsutils
 lvm2
 manpages
 mlocate
 mtr-tiny
 nano
 ntfs-3g
+exfat-fuse
 openssh-client
-plymouth
 tcpdump
 telnet
 ufw
 uuid-runtime
+
+plymouth

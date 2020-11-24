@@ -2,7 +2,6 @@
 adduser
 apt
 apt-utils
-aptitude
 bzip2
 console-setup
 debconf
@@ -29,14 +28,15 @@ python3
 sensible-utils
 sudo
 tzdata
-ubuntu-advantage-tools
 ubuntu-keyring
 udev
 vim
 whiptail
+zsh
 
 # elementary-minimal recommends
 rsyslog
 
+# needed for OSTree to work best
 ostree-boot
 usrmerge

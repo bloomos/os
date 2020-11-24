@@ -1,3 +1,0 @@
-#!/bin/sh
-
-rm -rf /boot/grub/x86_64-efi/core.efi

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+ADDUSER='/etc/adduser.conf'
+USERADD='/etc/default/useradd'
+
+sed -i 's/DSHELL=.*/DSHELL=\/bin\/zsh/' "$ADDUSER"
+sed -i 's/SHELL=.*/SHELL=\/bin\/zsh/' "$USERADD"
