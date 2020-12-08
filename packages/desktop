@@ -1,5 +1,6 @@
-# Use LXDE just to see if this works, then switch back hopefully.
+# Use LXDE & XInit just to see if this works, then switch back hopefully.
 lxde
+xinit
 
 # User-space applications.
 flatpak

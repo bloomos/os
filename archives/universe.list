@@ -1,4 +1,0 @@
-deb http://archive.ubuntu.com/ubuntu focal universe
-deb-src http://archive.ubuntu.com/ubuntu focal universe
-deb http://archive.ubuntu.com/ubuntu focal-updates universe
-deb-src http://archive.ubuntu.com/ubuntu focal-updates universe
