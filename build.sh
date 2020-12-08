@@ -89,9 +89,7 @@ export DEBIAN_FRONTEND=noninteractive
 export FK_MACHINE=none
 
 cat << EOF > $ROOTFS_DIR/etc/fstab
-# <file system> <mount point>   <type>  <options>       <dump>  <pass>
-proc /proc proc nodev,noexec,nosuid 0  0
-LABEL=writable    /     ext4    defaults    0 0
+LABEL=ostree / ext4  errors=remount-ro 0 0
 EOF
 
 # Mount cleanup handler.
@@ -136,8 +134,6 @@ apt-get --yes install aptitude
 # use aptitude because it keeps going if one of the packages doesn't exist.
 aptitude remove -y -f $BLACKLISTED_PACKAGES
 
-apt-get --yes remove aptitude
-
 rm -f /third-stage
 EOF
 
@@ -170,7 +166,7 @@ REPO=$BASE_DIR/ostree
 BRANCH="os/bloom/$ARCH/$BASECODENAME"
 
 mkdir -p "$REPO"
-ostree --repo="$REPO" init --mode="archive"
+ostree --repo="$REPO" init --mode="archive-z2"
 
 echo "Pulling from remote server"
 # ostree --repo="$REPO" remote add "$NAME" "$REMOTE_OSTREE_REPO" "$BRANCH"
@@ -178,6 +174,6 @@ echo "Pulling from remote server"
 # ostree --repo="$REPO" remote delete --if-exists "$NAME"
 
 echo "Commiting our new build"
-/bin/bash "$ROOT_DIR"/scripts/deb-ostree-builder.sh $BASECODENAME "$REPO" -a $ARCH -d "$ROOTFS_DIR"
+# /bin/bash "$ROOT_DIR"/scripts/deb-ostree-builder.sh $BASECODENAME "$REPO" -a $ARCH -d "$ROOTFS_DIR"
 
 echo "Complete!"

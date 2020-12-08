@@ -1,2 +1,5 @@
 linux-image-generic
 grub-efi-amd64-signed
+dracut
+ostree-boot
+

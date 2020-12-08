@@ -38,5 +38,4 @@ zsh
 rsyslog
 
 # needed for OSTree to work best
-ostree-boot
 usrmerge

@@ -8,6 +8,3 @@ flatpak
 avahi-daemon
 avahi-discover
 libnss-mdns
-
-# Live tools.
-gparted

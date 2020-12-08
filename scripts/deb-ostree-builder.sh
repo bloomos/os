@@ -117,6 +117,9 @@ mv ${initrd_file} ${initrd_file/initrd.img/initramfs}-${csum}
 
 popd >/dev/null
 
+# Wasn't working with it since it's a character special.
+rm -rf "${BUILDDIR}"/var/lib/dracut/console-setup-dir/etc/console-setup/null
+
 # OSTree only commits files or symlinks
 rm -rf "$BUILDDIR"/dev
 mkdir -p "$BUILDDIR"/dev
@@ -171,15 +174,6 @@ ln -s /sysroot/root "${BUILDDIR}"/root
 ln -s /var/opt "${BUILDDIR}"/opt
 ln -s /var/local "${BUILDDIR}"/usr/local
 ln -s /run/media "${BUILDDIR}"/media
-
-# Now ready to commit. Make the repo if necessary. An archive-z2 repo
-# is used since the intention is to use this repo to serve updates
-# from.
-mkdir -p "$REPO"
-if [ ! -f "$REPO"/config ]; then
-    echo "Initialiazing OSTree repo $REPO"
-    ostree --repo="$REPO" init --mode=archive-z2
-fi
 
 # Make the commit. The ostree ref is flatpak style.
 branch="os/bloom/$ARCH/$BASECODENAME"

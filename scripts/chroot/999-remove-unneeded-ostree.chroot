@@ -1,10 +1,4 @@
-#!/bin/sh
-# Description: Cleanup apt cache files that add ~100MB to the .iso and aren't needed
-
-rm -f /var/lib/apt/lists/*_Packages
-rm -f /var/lib/apt/lists/*_Sources
-rm -f /var/lib/apt/lists/*_Translation-*
-
+#!/bin/bash
 # Remove files that don't make sense for OSTree.
 rm -rf \
    /boot/*.bak \
@@ -15,4 +9,4 @@ rm -rf \
    /var/cache/debconf/*-old \
    /var/lib/dpkg/*-old \
    /boot/{initrd.img,vmlinuz} \
-   /{initrd.img,vmlinuz}{,.old}
+   /boot/{initrd.img,vmlinuz}{,.old}
