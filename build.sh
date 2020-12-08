@@ -170,7 +170,7 @@ REPO=$BASE_DIR/ostree
 BRANCH="os/bloom/$ARCH/$BASECODENAME"
 
 mkdir -p "$REPO"
-ostree --repo="$REPO" init --mode="archive-z2"
+ostree --repo="$REPO" init --mode="archive"
 
 echo "Pulling from remote server"
 # ostree --repo="$REPO" remote add "$NAME" "$REMOTE_OSTREE_REPO" "$BRANCH"
