@@ -13,7 +13,7 @@ BASE_DIR=`pwd`/build
 if [ -n "$1" ]; then
   CONFIG_FILE="$1"
 else
-  CONFIG_FILE="etc/terraform.conf"
+  CONFIG_FILE=".env"
 fi
 source "$ROOT_DIR"/"$CONFIG_FILE"
 
@@ -122,18 +122,21 @@ mount -t proc proc $ROOTFS_DIR/proc
 mount -o bind /dev/ $ROOTFS_DIR/dev/
 mount -o bind /dev/pts $ROOTFS_DIR/dev/pts
 
+echo $BLACKLISTED_PACKAGES > $ROOTFS_DIR/third-stage-blacklist
+
 # Make a third stage that installs all of the packages
 cat << EOF > $ROOTFS_DIR/third-stage
-#!/bin/bash -e
+#!/bin/bash
 apt-get update
 apt-get --yes upgrade
 apt-get --yes --option Acquire::Retries=5 --option Acquire::http::Timeout=100 install $PACKAGES
 
-apt-get --yes install aptitude
+for package in \$(cat /third-stage-blacklist); do
+    echo "Trying to remove \$package"
+    apt-get autoremove --purge -f -q -y "\$package"
+done
 
-# use aptitude because it keeps going if one of the packages doesn't exist.
-aptitude remove -y -f $BLACKLISTED_PACKAGES
-
+rm -f /third-stage-blacklist
 rm -f /third-stage
 EOF
 
@@ -174,6 +177,6 @@ echo "Pulling from remote server"
 # ostree --repo="$REPO" remote delete --if-exists "$NAME"
 
 echo "Commiting our new build"
-# /bin/bash "$ROOT_DIR"/scripts/deb-ostree-builder.sh $BASECODENAME "$REPO" -a $ARCH -d "$ROOTFS_DIR"
+/bin/bash "$ROOT_DIR"/scripts/deb-ostree-builder.sh $BASECODENAME "$REPO" -a $ARCH -d "$ROOTFS_DIR"
 
 echo "Complete!"

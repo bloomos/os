@@ -2,10 +2,34 @@
 lxde
 xinit
 
+# "The Desk"
+
+elementary-default-settings
+
 # User-space applications.
+
 flatpak
+pantheon-files
+io.elementary.terminal
+io.elementary.sideload
 
 # Zeroconf.
+
 avahi-daemon
 avahi-discover
 libnss-mdns
+
+# Fonts.
+
+fonts-croscore
+fonts-croscore-config-elementary
+
+fonts-inter
+fonts-roboto
+fonts-roboto-mono-elementary
+
+fonts-arphic-ukai
+fonts-arphic-uming
+fonts-kacst-one
+fonts-noto-cjk
+fonts-sil-padauk

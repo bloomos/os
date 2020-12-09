@@ -55,3 +55,7 @@ clamav
 # mdz, 2004-06-14: upstream deliberately obfuscates vulnerabilities
 # mdz, 2004-06-20: CAN-2002-0757, CAN-2003-0101, SNS 74, SNS 75
 webmin
+
+# Ubuntu packages we don't want.
+ubuntu-minimal
+ubuntu-advantage-tools
