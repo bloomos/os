@@ -1,7 +1,5 @@
 # packages useful for software development on Bloom
 # a 'dev' mode that will in the future be part of its own bundle
-#
-# NOT for developing Bloom itself
 
 curl
 git

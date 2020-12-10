@@ -1,63 +1,61 @@
 <div align="center">
-  <a href="https://elementary.io" align="center">
-    <center align="center">
-      <img src="https://raw.githubusercontent.com/elementary/brand/master/logomark-black.png" alt="elementary" align="center">
-    </center>
-  </a>
-  <br>
-  <h1 align="center"><center>elementary OS</center></h1>
-  <h3 align="center"><center>Build scripts for image creation</center></h3>
+  <h1 align="center"><center>Bloom OS</center></h1>
+  <h3 align="center"><center>Build scripts for OSTree creation</center></h3>
   <br>
   <br>
 </div>
 
 ---
 
-Experiments with Linux-based distributions. Right now, the goal is to get an elementary OS ish system running from OSTree, which has the following benefits:
+Experiments with Linux distributions. Right now, the state of the project is an `elementary OS`-ish system running from OSTree, which has the following benefits:
 
 * Read-only system.
 * A/B updates like Android.
+* Separating system packages from user packages.
 
-I am doing this only as a hobby, so I want to reuse from other free software projects when possible. With that in mind...
+In the future, my main goal is to work on the application stack in Bloom, things like:
 
-- [dbnicholson/deb-ostree-builder](https://github.com/dbnicholson/deb-ostree-builder/tree/simple-builder) - this looks interesting, want to inline the scripts and change to use `debootstrap` (like Elementary for Pi does?).
-- [archlinux/archiso](https://gitlab.archlinux.org/archlinux/archiso/-/blob/master/archiso/mkarchiso) - the Bash scripts here look great, and would be useful for making a live ISO from SquashFS.
+* Wayland
+* Unique and friendly windowing system
+* Flutter as primary toolkit
+* *'Just works'* mentality.
+* Productive environment for software developers and creatives.
 
-To-Do List:
+I am doing this only as a hobby, so I want to reuse from other free software projects when possible.
 
-* [x] Integrate deb-ostree-builder scripts, get an OSTree created w/ `debootstrap` without crashing.
-* [x] Create a deployment of OSTree in a directory.
-* [ ] Work with `archlinux/archiso` to get a live ISO created from OSTree.
-* [ ] Be able to install an OSTree system.
+## Installing
 
----
+Currently there's no way to install directly. What I recommend is installing [Endless OS](https://endlessos.com/home/), then 'deploy' the OSTree you've built since Endless also uses OSTree.
+
+The `deploy_ostree_local.sh` should do this. This is what I currently do for my system (developing Bloom on Bloom!).
 
 ## Building Locally
 
-As elementary OS is built with the Debian version of `live-build`, not the Ubuntu patched version, it's easiest to build an elementary .iso in a Debian VM or container. This prevents messing up your host system too.
+Make sure you're on a Debian/Ubuntu derived system, download all dependencies:
 
-The following example uses Docker and assumes you have Docker correctly installed and set up:
+```sh
+apt-get update
+apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
+        debootstrap git binfmt-support parted kpartx rsync dosfstools xz-utils \
+        python3.8 python3-pip unzip curl less groff \
+        ostree xorriso squashfs-tools
+```
 
- 1) Clone this project & `cd` into it:
+Then run `sudo ./build.sh`. This will create a OSTree repository in the `build/ostree` directory that you can (a) deploy to system (b) sync with S3.
 
-    ```
-    git clone https://github.com/elementary/os && cd os
-    ```
+## Credits
 
- 2) Configure the channel in the `etc/terraform.conf` (stable, daily).
+Bloom would not be possible without the work of the open-source community, which I hope this project eventually contributes back to.
 
- 3) Run the build:
+A non-exaustive list of projects Bloom wouldn't be possible without:
 
-    ```
-    docker run --privileged -i -v /proc:/proc \
-        -v ${PWD}:/working_dir \
-        -w /working_dir \
-        debian:latest \
-        /bin/bash -s etc/terraform.conf < build.sh
-    ```
+- elementary OS
+- Ubuntu
+- [deb-ostree-builder](https://github.com/dbnicholson/deb-ostree-builder)
+- Purism and `phosh` Wayland shell
 
- 4) When done, your image will be in the `builds` folder.
+### Hosting
 
-## Further Information
+Hosting for our APT repository generously hosted by [Cloudsmith](https://cloudsmith.com/).
 
-More information about the concepts behind `live-build` and the technical decisions made to arrive at this set of tools to build an .iso can be found [on the wiki](https://github.com/elementary/os/wiki/Building-iso-Images).
+![Cloudsmith Logo](assets/cloudsmith-logo-color.png)

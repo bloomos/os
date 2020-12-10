@@ -1,0 +1,7 @@
+# Source: Cloudsmith (support@cloudsmith.io)
+# Repository: Bloom Linux / packages
+# Description: A certifiably-awesome open-source package repository curated by Bloom Linux, hosted by Cloudsmith.
+
+deb https://dl.cloudsmith.io/public/bloom-linux/packages/deb/ubuntu @BASECODENAME main
+
+deb-src https://dl.cloudsmith.io/public/bloom-linux/packages/deb/ubuntu @BASECODENAME main
