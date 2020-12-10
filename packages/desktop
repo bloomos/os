@@ -1,10 +1,13 @@
-# Use LXDE & XInit just to see if this works, then switch back hopefully.
+# Bring in LXDE temporarily, going to get rid of this soon.
 lxde
-xinit
 
 # "The Desk"
 
-elementary-default-settings
+bloom-default-settings
+phosh
+feedbackd
+# Slated for removal, we should replace with Cerbere or Fluffy.
+gnome-session
 
 # User-space applications.
 
@@ -26,7 +29,7 @@ fonts-croscore-config-elementary
 
 fonts-inter
 fonts-roboto
-fonts-roboto-mono-elementary
+fonts-cascadia-code
 
 fonts-arphic-ukai
 fonts-arphic-uming

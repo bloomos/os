@@ -33,9 +33,10 @@ udev
 vim
 whiptail
 zsh
+runonce
 
 # elementary-minimal recommends
 rsyslog
 
-# needed for OSTree to work best
+# needed for OSTree to work
 usrmerge
