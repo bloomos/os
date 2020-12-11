@@ -1,0 +1,6 @@
+#!/bin/bash
+# Fix apt so if we unlock from OSTree, we can immediate start using.
+
+dpkg-statoverride --remove /var/lib/geoclue
+dpkg-statoverride --remove /usr/bin/crontab
+dpkg-statoverride --remove /usr/bin/mlocate
