@@ -5,7 +5,6 @@ apport
 apport-gtk
 apport-hooks-elementary
 apport-symptoms
-apt-transport-https
 banshee
 branding-ubuntu
 compiz
@@ -23,10 +22,10 @@ fonts-lklug-sinhala
 fonts-thai-tlwg
 fonts-tibetan-machine
 gdm3
-gnome-control-center
 gnome-screensaver
 # we only want gnome-session-bin not configs
 gnome-session
+gnome-shell
 gnome-software
 gnome-system-monitor
 gnome-user-guide

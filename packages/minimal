@@ -1,4 +1,5 @@
-# elementary-minimal
+# Inlined for more control: elementary-minimal
+
 adduser
 apt
 apt-utils
@@ -35,7 +36,6 @@ whiptail
 zsh
 runonce
 
-# elementary-minimal recommends
 rsyslog
 
 # needed for OSTree to work

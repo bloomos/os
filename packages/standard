@@ -1,4 +1,5 @@
-# elementary-standard
+# Inlined for more control: elementary-standard
+
 busybox-static
 cpio
 cron
@@ -28,7 +29,6 @@ time
 usbutils
 wget
 
-# elementary-standard recommends
 apparmor
 cryptsetup
 # Probably not needed because OSTree adds an option for the

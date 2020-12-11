@@ -128,6 +128,11 @@ echo $BLACKLISTED_PACKAGES > $ROOTFS_DIR/third-stage-blacklist
 cat << EOF > $ROOTFS_DIR/third-stage
 #!/bin/bash
 apt-get update
+# required
+apt-get install apt-transport-https
+
+apt-get update
+
 apt-get --yes upgrade
 apt-get --yes --option Acquire::Retries=5 --option Acquire::http::Timeout=100 install $PACKAGES
 

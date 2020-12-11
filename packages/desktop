@@ -1,26 +1,62 @@
-# Bring in LXDE temporarily, going to get rid of this soon.
-lxde
+# Inlined for more control:
+# https://github.com/elementary/seeds/blob/focal/desktop
+# https://github.com/elementary/seeds/blob/focal/pantheon
+# for more control.
 
-# "The Desk"
+# Default Settings
 
 bloom-default-settings
+
+# "The Desk"
+# FIXME: Add fluffy session manager
+
 phosh
-feedbackd
-# Slated for removal, we should replace with Cerbere or Fluffy.
-gnome-session
+xwayland
 
 # User-space applications.
 
 flatpak
+
+## Elementary apps.
+
 pantheon-files
 io.elementary.terminal
 io.elementary.sideload
+maya-calendar
 
-# Zeroconf.
+contractor
+io.elementary.print
+
+## GNOME apps.
+
+gnome-control-center
+file-roller
+gnome-font-viewer
+
+# Bluetooth, Wifi, Zeroconf.
+
+gnome-bluetooth
+
+network-manager
+network-manager-config-connectivity-ubuntu
+network-manager-pptp-gnome
+libproxy1-plugin-gsettings
+libproxy1-plugin-networkmanager
 
 avahi-daemon
 avahi-discover
 libnss-mdns
+
+# Sound & Media.
+# FIXME: Replace with Pipewire.
+
+pulseaudio
+pulseaudio-module-bluetooth
+
+gstreamer1.0-alsa
+gstreamer1.0-plugins-base-apps
+gstreamer1.0-packagekit
+gstreamer1.0-pulseaudio
 
 # Fonts.
 
@@ -36,3 +72,41 @@ fonts-arphic-uming
 fonts-kacst-one
 fonts-noto-cjk
 fonts-sil-padauk
+
+# XDG Utilities.
+
+xdg-utils
+xdg-user-dirs
+xdg-user-dirs-gtk
+
+# Misc.
+
+libnotify-bin
+elementary-printer-test-page
+geoclue-2.0
+p7zip-full
+gvfs-bin
+gvfs-fuse
+libpam-gnome-keyring
+
+# Input methods.
+
+gtk-im-libthai
+ibus-chewing
+im-config
+ibus
+ibus-gtk
+ibus-gtk3
+ibus-hangul
+ibus-libpinyin
+ibus-m17n
+ibus-mozc
+ibus-table
+ibus-table-cangjie
+ibus-table-quick-classic
+ibus-unikey
+ibus-table-wubi
+mozc-utils-gui
+
+# Accessibility.
+# FIXME: Investigate solutions that work with Wayland.
