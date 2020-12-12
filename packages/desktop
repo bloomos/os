@@ -16,6 +16,7 @@ xwayland
 # User-space applications.
 
 snapd
+snapd-xdg-open
 
 ## Elementary apps.
 
