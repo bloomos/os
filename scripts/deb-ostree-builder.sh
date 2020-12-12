@@ -124,12 +124,6 @@ rm -rf "${BUILDDIR}"/var/lib/dracut/console-setup-dir/etc/console-setup/null
 rm -rf "$BUILDDIR"/dev
 mkdir -p "$BUILDDIR"/dev
 
-# Fixup home directory base paths for OSTree
-sed -i -e 's|DHOME=/home|DHOME=/sysroot/home|g' \
-    "${BUILDDIR}"/etc/adduser.conf
-sed -i -e 's|# HOME=/home|HOME=/sysroot/home|g' \
-    "${BUILDDIR}"/etc/default/useradd
-
 # Move /etc to /usr/etc.
 #
 # FIXME: Need to handle passwd and group to be updatable. This can be
@@ -161,16 +155,28 @@ d /sysroot/home 0755 root root -
 d /sysroot/root 0700 root root -
 d /var/opt 0755 root root -
 d /var/local 0755 root root -
+d /var/lib/snapd 0755 root root -
 d /run/media 0755 root root -
 L /var/lib/dpkg - - - - ../../usr/share/dpkg/database
 EOF
 
-# Create symlinks in the ostree for persistent directories.
+# Create mount binds & symlinks in the ostree for persistent directories.
+# snapd has issues working with symlinks.
 mkdir -p "${BUILDDIR}"/sysroot
-rm -rf "${BUILDDIR}"/{home,root,media,opt} "${BUILDDIR}"/usr/local
+rm -rf "${BUILDDIR}"/{home,root,media,opt,snap} "${BUILDDIR}"/usr/local
+
+# Create snapd directories
+mkdir -p "${BUILDDIR}"/var/lib/snapd/snap
+mkdir -p "${BUILDDIR}"/var/lib/snapd/void
+
+cat << EOF > $BUILDDIR/usr/etc/fstab
+LABEL=ostree / ext4  errors=remount-ro 0 0
+/sysroot/home /home none x-systemd.requires=/,x-systemd.automount,bind 0 0
+/sysroot/root /root none x-systemd.requires=/,x-systemd.automount,bind 0 0
+/var/lib/snapd/snap /snap none x-systemd.requires=/,x-systemd.automount,bind 0 0
+EOF
+
 ln -s /sysroot/ostree "${BUILDDIR}"/ostree
-ln -s /sysroot/home "${BUILDDIR}"/home
-ln -s /sysroot/root "${BUILDDIR}"/root
 ln -s /var/opt "${BUILDDIR}"/opt
 ln -s /var/local "${BUILDDIR}"/usr/local
 ln -s /run/media "${BUILDDIR}"/media

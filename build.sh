@@ -72,10 +72,10 @@ sed -i "s/@BASECODENAME/$BASECODENAME/" $ROOTFS_DIR/etc/apt/sources.list.d/*.lis
 # Set BASECODENAME in added preferences
 sed -i "s/@BASECODENAME/$BASECODENAME/" $ROOTFS_DIR/etc/apt/preferences.d/*.pref*
 
-echo "elementary" > $ROOTFS_DIR/etc/hostname
-
+# Will be replaced later by default-settings package at boot.
+echo "bloom" > $ROOTFS_DIR/etc/hostname
 cat << EOF > $ROOTFS_DIR/etc/hosts
-127.0.0.1       elementary    localhost
+127.0.0.1       bloom    localhost
 ::1             localhost ip6-localhost ip6-loopback
 fe00::0         ip6-localnet
 ff00::0         ip6-mcastprefix
@@ -88,6 +88,7 @@ export DEBIAN_FRONTEND=noninteractive
 # Config to stop flash-kernel trying to detect the hardware in chroot
 export FK_MACHINE=none
 
+# In 'deb-ostree-builder' gets swapped for mount binds.
 cat << EOF > $ROOTFS_DIR/etc/fstab
 LABEL=ostree / ext4  errors=remount-ro 0 0
 EOF

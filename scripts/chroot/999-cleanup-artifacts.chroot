@@ -2,7 +2,6 @@
 # Remove files that don't make sense for OSTree.
 rm -rf \
    /boot/*.bak \
-   /etc/apt/preferences~ \
    /etc/{passwd,group,shadow,gshadow}- \
    /var/cache/debconf/*-old \
    /var/lib/dpkg/*-old \

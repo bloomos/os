@@ -15,7 +15,7 @@ xwayland
 
 # User-space applications.
 
-flatpak
+snapd
 
 ## Elementary apps.
 

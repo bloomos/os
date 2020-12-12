@@ -13,10 +13,7 @@ fi
 
 # Install dependencies in host system
 apt-get update
-apt-get install -y --no-install-recommends ubuntu-keyring ca-certificates \
-        debootstrap git binfmt-support parted kpartx rsync dosfstools xz-utils \
-        python3.8 python3-pip unzip curl less groff \
-        ostree xorriso squashfs-tools
+bash ./install_deps.sh
 
 # Install the AWS CLI
 # https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html

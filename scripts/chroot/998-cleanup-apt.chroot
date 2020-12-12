@@ -4,3 +4,4 @@
 rm -f /var/lib/apt/lists/*_Packages
 rm -f /var/lib/apt/lists/*_Sources
 rm -f /var/lib/apt/lists/*_Translation-*
+rm -rf /etc/apt/preferences~
