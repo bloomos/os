@@ -154,7 +154,23 @@ cat > "${BUILDDIR}"/usr/lib/tmpfiles.d/ostree.conf <<EOF
 d /sysroot/home 0755 root root -
 d /sysroot/root 0700 root root -
 d /var/opt 0755 root root -
+d /var/srv 0755 root root -
+
+d /var/cache 0755 root root -
+d /var/cache/runonce 0755 root root -
+
 d /var/local 0755 root root -
+d /var/local/bin 0755 root root -
+d /var/local/etc 0755 root root -
+d /var/local/games 0755 root root -
+d /var/local/include 0755 root root -
+d /var/local/lib 0755 root root -
+d /var/local/man 0755 root root -
+d /var/local/sbin 0755 root root -
+d /var/local/share 0755 root root -
+d /var/local/src 0755 root root -
+
+d /var/mnt 0755 root root -
 d /var/lib/snapd 0755 root root -
 d /run/media 0755 root root -
 L /var/lib/dpkg - - - - ../../usr/share/dpkg/database
@@ -169,6 +185,11 @@ rm -rf "${BUILDDIR}"/{home,root,media,opt,snap} "${BUILDDIR}"/usr/local
 mkdir -p "${BUILDDIR}"/var/lib/snapd/snap
 mkdir -p "${BUILDDIR}"/var/lib/snapd/void
 
+# Create needed directories
+mkdir -p "${BUILDDIR}"/root
+mkdir -p "${BUILDDIR}"/home
+mkdir -p "${BUILDDIR}"/snap
+
 cat << EOF > $BUILDDIR/usr/etc/fstab
 LABEL=ostree / ext4  errors=remount-ro 0 0
 /sysroot/home /home none x-systemd.requires=/,x-systemd.automount,bind 0 0
@@ -178,6 +199,8 @@ EOF
 
 ln -s /sysroot/ostree "${BUILDDIR}"/ostree
 ln -s /var/opt "${BUILDDIR}"/opt
+ln -s /var/srv "${BUILDDIR}"/srv
+ln -s /var/mnt "${BUILDDIR}"/mnt
 ln -s /var/local "${BUILDDIR}"/usr/local
 ln -s /run/media "${BUILDDIR}"/media
 
