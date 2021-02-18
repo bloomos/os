@@ -59,3 +59,6 @@ webmin
 # Ubuntu packages we don't want.
 ubuntu-minimal
 ubuntu-advantage-tools
+
+# systemd-adj package that negatively affects startup time.
+networkd-dispatcher
