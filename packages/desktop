@@ -8,7 +8,6 @@
 bloom-default-settings
 
 # "The Desk"
-# FIXME: Add fluffy session manager
 
 phosh
 xwayland

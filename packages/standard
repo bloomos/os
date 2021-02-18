@@ -28,11 +28,11 @@ strace
 time
 usbutils
 wget
+mc
 
 apparmor
 cryptsetup
-# Probably not needed because OSTree adds an option for the
-# previously booted tree...
+# Probably not needed because OSTree adds an option for the previously booted tree...
 # friendly-recovery
 iputils-tracepath
 irqbalance
