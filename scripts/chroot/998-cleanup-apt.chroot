@@ -1,6 +1,10 @@
 #!/bin/sh
 # Description: Cleanup apt cache files that add ~100MB to the .iso and aren't needed
 
+# Remove apt timers.
+rm -f /etc/systemd/system/timers.target.wants/apt-daily.timer
+rm -f /etc/systemd/system/timers.target.wants/apt-daily-upgrade.timer
+
 rm -f /var/lib/apt/lists/*_Packages
 rm -f /var/lib/apt/lists/*_Sources
 rm -f /var/lib/apt/lists/*_Translation-*
