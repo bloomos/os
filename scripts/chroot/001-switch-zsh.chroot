@@ -5,3 +5,6 @@ USERADD='/etc/default/useradd'
 
 sed -i 's/DSHELL=.*/DSHELL=\/bin\/zsh/' "$ADDUSER"
 sed -i 's/SHELL=.*/SHELL=\/bin\/zsh/' "$USERADD"
+
+# Fix to allow ZSH to read from profile.
+echo "emulate sh -c '. /etc/profile'" > /etc/zsh/zprofile
