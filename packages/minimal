@@ -1,5 +1,11 @@
 # Inlined for more control: elementary-minimal
 
+# put in here so we have most up-to-date version vs. debootstrap
+systemd
+systemd-sysv
+systemd-timesyncd
+isc-dhcp-client
+
 adduser
 apt
 apt-utils
@@ -12,7 +18,6 @@ eject
 init
 iproute2
 iputils-ping
-isc-dhcp-client
 kbd
 kmod
 less

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# systemd 246+ allows for AOT apparmor units to be loaded, saving boot time
+# https://gitlab.com/apparmor/apparmor/-/wikis/Apparmorinsystemd
+
+echo '# https://gitlab.com/apparmor/apparmor/-/wikis/Apparmorinsystemd' >> /etc/apparmor/parser.conf
+
+# enable writing the cache
+echo 'write-cache' >> /etc/apparmor/parser.conf
+# set the cache location
+echo 'cache-loc /etc/apparmor/earlypolicy/' >> /etc/apparmor/parser.conf

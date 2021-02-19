@@ -1,0 +1,23 @@
+#!/bin/sh
+# generate a sysusers.d(5) file from Debian's static master passwd/group files
+
+# It's possible that our users can be overwritten by /etc/passwd and /etc/group in
+# the OSTree etc-merge, so we need to keep track of system users here.
+#
+# This will replace /usr/lib/sysusers.d/basic.conf
+set -eu
+
+echo '# generated from bloomos/os' > /usr/lib/sysusers.d/basic.conf
+
+# only take groups whose name+gid != the corresponding user in passwd.master
+export IFS=:
+while read name _ id _; do
+    if ! grep -q "^$name:\*:$id:$id:" /etc/passwd; then
+        printf "g %-10s %-5s -\n" $name $id >> /usr/lib/sysusers.d/basic.conf
+    fi
+done < /etc/group
+
+echo
+
+# treat "nobody:nogroup" specially: same ID, but different name, so prevent creating a "nobody" group
+awk -F:  '{ i = ($3 == $4 && $4 != 65534) ? $3 : $3":"$4; printf("u %-10s %-7s - %-20s %s\n", $1,i,$6,$7) }'  < /etc/passwd >> /usr/lib/sysusers.d/basic.conf

@@ -125,9 +125,6 @@ rm -rf "$BUILDDIR"/dev
 mkdir -p "$BUILDDIR"/dev
 
 # Move /etc to /usr/etc.
-#
-# FIXME: Need to handle passwd and group to be updatable. This can be
-# done with libnss-altfiles, though that has other drawbacks.
 if [ -d "${BUILDDIR}"/usr/etc ]; then
     echo "ERROR: Non-empty /usr/etc found!" >&2
     ls -lR "${BUILDDIR}"/usr/etc
