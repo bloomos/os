@@ -5,10 +5,10 @@
 
 # Default Settings
 
-libglib2.0-bin
 qt5-gtk-platformtheme
 adwaita-qt
 elementary-icon-theme
+io.elementary.stylesheet
 
 # "The Desk"
 
