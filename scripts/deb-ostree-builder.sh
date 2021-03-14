@@ -145,34 +145,6 @@ mv "${BUILDDIR}"/var/lib/dpkg "${BUILDDIR}"/usr/share/dpkg/database
 ln -sr "${BUILDDIR}"/usr/share/dpkg/database \
    "${BUILDDIR}"/var/lib/dpkg
 
-# tmpfiles.d setup to make the ostree root compatible with persistent
-# directories in the sysroot.
-cat > "${BUILDDIR}"/usr/lib/tmpfiles.d/ostree.conf <<EOF
-d /sysroot/home 0755 root root -
-d /sysroot/root 0700 root root -
-d /var/opt 0755 root root -
-d /var/srv 0755 root root -
-
-d /var/cache 0755 root root -
-d /var/cache/runonce 0755 root root -
-
-d /var/local 0755 root root -
-d /var/local/bin 0755 root root -
-d /var/local/etc 0755 root root -
-d /var/local/games 0755 root root -
-d /var/local/include 0755 root root -
-d /var/local/lib 0755 root root -
-d /var/local/man 0755 root root -
-d /var/local/sbin 0755 root root -
-d /var/local/share 0755 root root -
-d /var/local/src 0755 root root -
-
-d /var/mnt 0755 root root -
-d /var/lib/snapd 0755 root root -
-d /run/media 0755 root root -
-L /var/lib/dpkg - - - - ../../usr/share/dpkg/database
-EOF
-
 # Create mount binds & symlinks in the ostree for persistent directories.
 # snapd has issues working with symlinks.
 mkdir -p "${BUILDDIR}"/sysroot
