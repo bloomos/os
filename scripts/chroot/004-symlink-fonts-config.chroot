@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ln -s /etc/fonts/conf.avail/31-fonts-config.conf /etc/fonts/conf.d/31-fonts-config.conf

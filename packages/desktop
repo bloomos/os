@@ -63,6 +63,8 @@ gstreamer1.0-pulseaudio
 # Fonts.
 
 fonts-croscore
+fonts-crosextra-caladea
+fonts-crosextra-carlito
 fonts-croscore-config-elementary
 
 fonts-inter
@@ -84,7 +86,6 @@ xdg-user-dirs-gtk
 # Misc.
 
 libnotify-bin
-elementary-printer-test-page
 geoclue-2.0
 p7zip-full
 gvfs-bin
