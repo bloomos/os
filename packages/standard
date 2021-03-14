@@ -28,7 +28,6 @@ strace
 time
 usbutils
 wget
-mc
 
 apparmor
 cryptsetup
