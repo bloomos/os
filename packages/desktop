@@ -1,11 +1,14 @@
 # Inlined for more control:
 # https://github.com/elementary/seeds/blob/focal/desktop
 # https://github.com/elementary/seeds/blob/focal/pantheon
-# for more control.
+# https://github.com/bloomos/default-settings/blob/master/debian/control
 
 # Default Settings
 
-bloom-default-settings
+libglib2.0-bin
+qt5-gtk-platformtheme
+adwaita-qt
+elementary-icon-theme
 
 # "The Desk"
 
@@ -21,7 +24,6 @@ snapd-xdg-open
 
 pantheon-files
 io.elementary.terminal
-io.elementary.sideload
 maya-calendar
 
 contractor

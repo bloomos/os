@@ -49,4 +49,7 @@ telnet
 ufw
 uuid-runtime
 
+systemd-container
+oomd
+
 plymouth

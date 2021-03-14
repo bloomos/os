@@ -1,12 +1,19 @@
 # Packages useful for software development on Bloom.
 # A 'dev' mode that will in the future be part of its own bundle.
 
+# Required for Linuxbrew.
 curl
 git
+file
+build-essential
 
 debhelper
 devscripts
 git-buildpackage
-nfpm
 
 python3-pip
+bazel
+
+libwlroots
+libwlroots-dev
+libwayland-dev

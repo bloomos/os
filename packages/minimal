@@ -31,6 +31,7 @@ netplan.io
 passwd
 procps
 python3
+python-is-python3
 sensible-utils
 sudo
 tzdata
