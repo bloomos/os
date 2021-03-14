@@ -92,16 +92,6 @@ cookies-policy='no-third-party'
 enable-adblock=false
 enable-smooth-scrolling=true
 
-[org.gnome.mutter]
-auto-maximize=false
-overlay-key='Super_L'
-center-new-windows=true
-workspaces-only-on-primary=true
-
-[org.gnome.mutter.keybindings]
-toggle-tiled-left=['<Control><Super>Left']
-toggle-tiled-right=['<Control><Super>Right']
-
 [org.gnome.nm-applet]
 disable-connected-notifications=true
 show-applet=false
@@ -130,19 +120,7 @@ active=false
 [org.gnome.settings-daemon.plugins.xsettings]
 antialiasing='grayscale'
 hinting='slight'
-overrides={'Gtk/DialogsUseHeader': <0>, 'Gtk/EnablePrimaryPaste': <0>, 'Gtk/ShellShowsAppMenu': <0>, 'Gtk/DecorationLayout': <'close:menu,maximize'>}
+overrides={'Gtk/DialogsUseHeader': <0>, 'Gtk/EnablePrimaryPaste': <0>, 'Gtk/ShellShowsAppMenu': <0>, 'Gtk/DecorationLayout': <'close:icon:maximize,close'>}
 
 [org.gtk.Settings.FileChooser]
 sort-directories-first=true
-
-[org.onboard]
-theme='/usr/share/onboard/themes/Nightshade.theme'
-
-[org.pantheon.desktop.gala.behavior]
-overlay-action='io.elementary.shortcut-overlay'
-panel-main-menu-action='wingpanel --toggle-indicator=app-launcher'
-
-[org.pantheon.desktop.gala.notifications.applications.gala-other]
-bubbles=false
-remember=false
-sounds=false
