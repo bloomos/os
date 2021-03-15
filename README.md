@@ -23,6 +23,8 @@ In the future, my main goal is to work on the application stack in Bloom, things
 
 I am doing this only as a hobby, so I want to reuse from other free software projects when possible.
 
+Discord for the project! https://discord.gg/V7nVXFZ7
+
 ## Installing
 
 Currently there's no way to install directly. What I recommend is installing [Endless OS](https://endlessos.com/home/), then 'deploy' the OSTree you've built since Endless also uses OSTree.
