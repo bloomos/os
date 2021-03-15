@@ -42,6 +42,7 @@ mtr-tiny
 nano
 ntfs-3g
 exfat-fuse
+exfat-utils
 openssh-client
 tcpdump
 telnet
