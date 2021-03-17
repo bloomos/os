@@ -33,11 +33,11 @@ procps
 python3
 python-is-python3
 sensible-utils
-sudo
+doas
 tzdata
 ubuntu-keyring
 udev
-vim
+vim-tiny
 whiptail
 zsh
 runonce

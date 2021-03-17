@@ -62,3 +62,6 @@ ubuntu-advantage-tools
 
 # systemd-adj package that negatively affects startup time.
 networkd-dispatcher
+
+# Replaced with doas.
+sudo

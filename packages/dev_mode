@@ -1,11 +1,12 @@
 # Packages useful for software development on Bloom.
 # A 'dev' mode that will in the future be part of its own bundle.
 
-# Required for Linuxbrew.
 curl
 git
 file
 build-essential
+
+systemd-bootchart
 
 debhelper
 devscripts

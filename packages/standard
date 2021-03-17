@@ -30,6 +30,7 @@ usbutils
 wget
 
 apparmor
+apparmor-profiles
 cryptsetup
 # Probably not needed because OSTree adds an option for the previously booted tree...
 # friendly-recovery
