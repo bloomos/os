@@ -137,6 +137,8 @@ apt-get update
 apt-get --yes upgrade
 apt-get --yes --option Acquire::Retries=5 --option Acquire::http::Timeout=100 install $PACKAGES
 
+export SUDO_FORCE_REMOVE=yes
+
 for package in \$(cat /third-stage-blacklist); do
     echo "Trying to remove \$package"
     apt-get autoremove --purge -f -q -y "\$package"

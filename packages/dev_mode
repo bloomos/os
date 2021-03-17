@@ -15,6 +15,3 @@ git-buildpackage
 python3-pip
 bazel
 
-libwlroots
-libwlroots-dev
-libwayland-dev
